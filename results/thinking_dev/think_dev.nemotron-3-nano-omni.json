@@ -1,0 +1,72 @@
+{
+  "items": 1181,
+  "videos": 100,
+  "items_per_task": {
+    "bcq": 200,
+    "bcq_openended": 200,
+    "mcq": 100,
+    "mcq_openended": 100,
+    "open_qa": 100,
+    "scene_description": 99,
+    "video_summarization": 100,
+    "temporal_localization": 99,
+    "temporal_description": 88,
+    "causal_linkage": 95
+  },
+  "official": {
+    "bcq_accuracy": 0.675,
+    "bcq_openended_bertscore_f1": -0.446827,
+    "mcq_accuracy": 0.67,
+    "mcq_openended_bertscore_f1": -0.576265,
+    "open_qa_bertscore_f1": -0.435124,
+    "scene_description_bertscore_f1": 0.189388,
+    "video_summarization_bertscore_f1": -0.505378,
+    "temporal_localization_miou": 0.225576,
+    "temporal_description_bertscore_f1": -0.187039,
+    "causal_linkage_bertscore_f1": -1.281851
+  },
+  "extra": {
+    "bcq_accuracy_final": 0.675,
+    "bcq_openended_exact_accuracy": 0.705,
+    "bcq_openended_accuracy_final": 0.705,
+    "mcq_accuracy_final": 0.67,
+    "mcq_openended_letter_accuracy": 0.67,
+    "mcq_openended_accuracy_final": 0.67,
+    "temporal_localization_miou_unparseable_as_zero": 0.186841,
+    "temporal_localization_miou_final": 0.186841,
+    "temporal_localization_parse_rate_final": 0.828283
+  },
+  "parse_rates": {
+    "bcq": {
+      "strict": 0.795,
+      "lenient": 0.0,
+      "fail": 0.205
+    },
+    "bcq_openended": {
+      "strict": 0.83,
+      "lenient": 0.0,
+      "fail": 0.17
+    },
+    "mcq": {
+      "strict": 0.78,
+      "lenient": 0.0,
+      "fail": 0.22
+    },
+    "mcq_openended": {
+      "strict": 0.8,
+      "lenient": 0.0,
+      "fail": 0.2
+    },
+    "temporal_localization": {
+      "strict": 0.8283,
+      "lenient": 0.0,
+      "fail": 0.1717
+    }
+  },
+  "official_mean": -0.167252,
+  "mean_9_tasks": -0.210899,
+  "slice": "<repo>/eval/slices/dev.jsonl",
+  "predictions": "<repo>/runs/009/nemotron-3-nano-omni-vllm-image_list-16f448-plain-think-vendor-dev-62f1b98a/predictions.jsonl",
+  "tasks": "all",
+  "prefix": null
+}

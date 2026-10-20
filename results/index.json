@@ -1,0 +1,511 @@
+[
+ {
+  "id": "pivot.lfm2.5-vl-3b",
+  "scores": "scores/pivot.lfm2.5-vl-3b.csv.gz",
+  "run": "lfm2.5-vl-3b-vllm-image_list-16f448-plain-fp16-5-vl-3b.sahilchachra-awq-eval-297e1be7",
+  "items": 11771,
+  "host": "a100"
+ },
+ {
+  "id": "pivot.cosmos3-edge",
+  "scores": "scores/pivot.cosmos3-edge.csv.gz",
+  "run": "cosmos3-edge-vllm-image_list-16f448-plain-fp16-bi-own-w4a16-eval-61c1488b",
+  "items": 11771,
+  "host": "a100"
+ },
+ {
+  "id": "pivot.north-micro",
+  "scores": "scores/pivot.north-micro.csv.gz",
+  "run": "north-micro-vllm-image_list-16f448-plain-fp16-bi-own-w4a16-eval-d32cff44",
+  "items": 11771,
+  "host": "a100"
+ },
+ {
+  "id": "pivot.glm-4.6v-flash",
+  "scores": "scores/pivot.glm-4.6v-flash.csv.gz",
+  "run": "glm-4.6v-flash-vllm-image_list-16f448-plain-fp16-bi-6v-flash.cyankiwi-awq4-eval-38d742bc",
+  "items": 11771,
+  "host": "a100"
+ },
+ {
+  "id": "pivot.cosmos3-nano",
+  "scores": "scores/pivot.cosmos3-nano.csv.gz",
+  "run": "cosmos3-nano-vllm-image_list-16f448-plain-fp16-bi-nathanth-w4a16-eval-50f2833b",
+  "items": 11771,
+  "host": "a100"
+ },
+ {
+  "id": "pivot.qwen3-vl-8b",
+  "scores": "scores/pivot.qwen3-vl-8b.csv.gz",
+  "run": "qwen3-vl-8b-vllm-image_list-16f448-plain-fp16-bi-cyankiwi-awq4-eval-8b0e4abc",
+  "items": 11771,
+  "host": "a100"
+ },
+ {
+  "id": "pivot.nemotron-3-nano-omni",
+  "scores": "scores/pivot.nemotron-3-nano-omni.csv.gz",
+  "run": "nemotron-3-nano-omni-vllm-image_list-16f448-plain-drawais-w4a16-eval-1a329b14",
+  "items": 11771,
+  "host": "a100"
+ },
+ {
+  "id": "pivot.molmo2-8b",
+  "scores": "scores/pivot.molmo2-8b.csv.gz",
+  "run": "molmo2-8b-vllm-image_list-16f448-plain-bi-own-w4a16-eval-9ea808d3",
+  "items": 11771,
+  "host": "a100"
+ },
+ {
+  "id": "pivot.qwen3.5-9b",
+  "scores": "scores/pivot.qwen3.5-9b.csv.gz",
+  "run": "qwen3.5-9b-vllm-image_list-16f448-plain-fp16-5-9b.cyankiwi-awq4-eval-fd8bbc18",
+  "items": 11771,
+  "host": "a100"
+ },
+ {
+  "id": "anchor.lfm2.5-vl-3b",
+  "scores": "scores/anchor.lfm2.5-vl-3b.csv.gz",
+  "run": "lfm2.5-vl-3b-vllm-image_list-16f448-plain-eval-ed4dd453",
+  "items": 11771,
+  "host": "a100"
+ },
+ {
+  "id": "anchor.cosmos3-edge",
+  "scores": "scores/anchor.cosmos3-edge.csv.gz",
+  "run": "cosmos3-edge-vllm-image_list-16f448-plain-bi-eval-4b6e6e09",
+  "items": 11771,
+  "host": "a100"
+ },
+ {
+  "id": "anchor.north-micro",
+  "scores": "scores/anchor.north-micro.csv.gz",
+  "run": "north-micro-vllm-image_list-16f448-plain-bi-eval-f3f35242",
+  "items": 11771,
+  "host": "a100"
+ },
+ {
+  "id": "anchor.cosmos3-nano",
+  "scores": "scores/anchor.cosmos3-nano.csv.gz",
+  "run": "cosmos3-nano-vllm-image_list-16f448-plain-bi-eval-80ce9a40",
+  "items": 11771,
+  "host": "a100"
+ },
+ {
+  "id": "anchor.glm-4.6v-flash",
+  "scores": "scores/anchor.glm-4.6v-flash.csv.gz",
+  "run": "glm-4.6v-flash-vllm-image_list-16f448-plain-bi-eval-8258f376",
+  "items": 11771,
+  "host": "a100"
+ },
+ {
+  "id": "anchor.qwen3-vl-8b",
+  "scores": "scores/anchor.qwen3-vl-8b.csv.gz",
+  "run": "qwen3-vl-8b-vllm-image_list-16f448-plain-bi-eval-2421bead",
+  "items": 11771,
+  "host": "a100"
+ },
+ {
+  "id": "anchor.nemotron-3-nano-omni",
+  "scores": "scores/anchor.nemotron-3-nano-omni.csv.gz",
+  "run": "nemotron-3-nano-omni-vllm-image_list-16f448-plain-eval-6a69645f",
+  "items": 11771,
+  "host": "a100"
+ },
+ {
+  "id": "anchor.qwen3.5-9b",
+  "scores": "scores/anchor.qwen3.5-9b.csv.gz",
+  "run": "qwen3.5-9b-vllm-image_list-16f448-plain-eval-a6e550ca",
+  "items": 11771,
+  "host": "a100"
+ },
+ {
+  "id": "anchor.molmo2-8b",
+  "scores": "scores/anchor.molmo2-8b.csv.gz",
+  "run": "molmo2-8b-vllm-image_list-16f448-plain-bi-eval-c272ee55",
+  "items": 11771,
+  "host": "a100"
+ },
+ {
+  "id": "anchor.qwen3.8-27b",
+  "scores": "scores/anchor.qwen3.8-27b.csv.gz",
+  "run": "qwen3.8-27b-vllm-image_list-16f448-plain-eval-c215cdaa",
+  "items": 11771,
+  "host": "a100"
+ },
+ {
+  "id": "tarbench.lfm2.5-vl-3b",
+  "scores": "tarbench/tarbench.lfm2.5-vl-3b.csv",
+  "run": "",
+  "host": "a100"
+ },
+ {
+  "id": "tarbench.cosmos3-edge",
+  "scores": "tarbench/tarbench.cosmos3-edge.csv",
+  "run": "",
+  "host": "a100"
+ },
+ {
+  "id": "tarbench.north-micro",
+  "scores": "tarbench/tarbench.north-micro.csv",
+  "run": "",
+  "host": "a100"
+ },
+ {
+  "id": "tarbench.cosmos3-nano",
+  "scores": "tarbench/tarbench.cosmos3-nano.csv",
+  "run": "",
+  "host": "a100"
+ },
+ {
+  "id": "tarbench.glm-4.6v-flash",
+  "scores": "tarbench/tarbench.glm-4.6v-flash.csv",
+  "run": "",
+  "host": "a100"
+ },
+ {
+  "id": "tarbench.qwen3-vl-8b",
+  "scores": "tarbench/tarbench.qwen3-vl-8b.csv",
+  "run": "",
+  "host": "a100"
+ },
+ {
+  "id": "tarbench.nemotron-3-nano-omni",
+  "scores": "tarbench/tarbench.nemotron-3-nano-omni.csv",
+  "run": "",
+  "host": "a100"
+ },
+ {
+  "id": "tarbench.qwen3.5-9b",
+  "scores": "tarbench/tarbench.qwen3.5-9b.csv",
+  "run": "",
+  "host": "a100"
+ },
+ {
+  "id": "tarbench.molmo2-8b",
+  "scores": "tarbench/tarbench.molmo2-8b.csv",
+  "run": "",
+  "host": "a100"
+ },
+ {
+  "id": "tarbench.qwen3.8-27b",
+  "scores": "tarbench/tarbench.qwen3.8-27b.csv",
+  "run": "",
+  "host": "a100"
+ },
+ {
+  "id": "noframes.lfm2.5-vl-3b",
+  "scores": "scores/noframes.lfm2.5-vl-3b.csv.gz",
+  "run": "lfm2.5-vl-3b-vllm-no_frames-noframes-plain-eval-473503fb",
+  "items": 11771,
+  "host": "a100"
+ },
+ {
+  "id": "noframes.cosmos3-edge",
+  "scores": "scores/noframes.cosmos3-edge.csv.gz",
+  "run": "cosmos3-edge-vllm-no_frames-noframes-plain-bi-eval-931e3eb8",
+  "items": 11771,
+  "host": "a100"
+ },
+ {
+  "id": "noframes.north-micro",
+  "scores": "scores/noframes.north-micro.csv.gz",
+  "run": "north-micro-vllm-no_frames-noframes-plain-bi-eval-527dfb6f",
+  "items": 11771,
+  "host": "a100"
+ },
+ {
+  "id": "noframes.cosmos3-nano",
+  "scores": "scores/noframes.cosmos3-nano.csv.gz",
+  "run": "cosmos3-nano-vllm-no_frames-noframes-plain-bi-eval-baf23d99",
+  "items": 11771,
+  "host": "a100"
+ },
+ {
+  "id": "noframes.glm-4.6v-flash",
+  "scores": "scores/noframes.glm-4.6v-flash.csv.gz",
+  "run": "glm-4.6v-flash-vllm-no_frames-noframes-plain-bi-eval-f9f2d8a9",
+  "items": 11771,
+  "host": "a100"
+ },
+ {
+  "id": "noframes.qwen3-vl-8b",
+  "scores": "scores/noframes.qwen3-vl-8b.csv.gz",
+  "run": "qwen3-vl-8b-vllm-no_frames-noframes-plain-bi-eval-0a7ecd46",
+  "items": 11771,
+  "host": "a100"
+ },
+ {
+  "id": "noframes.nemotron-3-nano-omni",
+  "scores": "scores/noframes.nemotron-3-nano-omni.csv.gz",
+  "run": "nemotron-3-nano-omni-vllm-no_frames-noframes-plain-eval-3271e743",
+  "items": 11771,
+  "host": "a100"
+ },
+ {
+  "id": "noframes.qwen3.5-9b",
+  "scores": "scores/noframes.qwen3.5-9b.csv.gz",
+  "run": "qwen3.5-9b-vllm-no_frames-noframes-plain-eval-d00068b3",
+  "items": 11771,
+  "host": "a100"
+ },
+ {
+  "id": "noframes.molmo2-8b",
+  "scores": "scores/noframes.molmo2-8b.csv.gz",
+  "run": "molmo2-8b-vllm-no_frames-noframes-plain-bi-eval-e38f2907",
+  "items": 11771,
+  "host": "a100"
+ },
+ {
+  "id": "f8.lfm2.5-vl-3b",
+  "scores": "scores/f8.lfm2.5-vl-3b.csv.gz",
+  "run": "lfm2.5-vl-3b-vllm-image_list-8f448-plain-fp16-5-vl-3b.sahilchachra-awq-eval-5343cf2d",
+  "items": 2943,
+  "host": "a100"
+ },
+ {
+  "id": "f32.lfm2.5-vl-3b",
+  "scores": "scores/f32.lfm2.5-vl-3b.csv.gz",
+  "run": "lfm2.5-vl-3b-vllm-image_list-32f448-plain-fp16-5-vl-3b.sahilchachra-awq-eval-f6c7ed7a",
+  "items": 2943,
+  "host": "a100"
+ },
+ {
+  "id": "cap896.lfm2.5-vl-3b",
+  "scores": "scores/cap896.lfm2.5-vl-3b.csv.gz",
+  "run": "lfm2.5-vl-3b-vllm-image_list-16f896-plain-fp16-5-vl-3b.sahilchachra-awq-eval-f1778e16",
+  "items": 2943,
+  "host": "a100"
+ },
+ {
+  "id": "w16.lfm2.5-vl-3b",
+  "scores": "scores/w16.lfm2.5-vl-3b.csv.gz",
+  "run": "lfm2.5-vl-3b-vllm-image_list-16f448-plain-fp16-eval-2d139e9f",
+  "items": 2943,
+  "host": "a100"
+ },
+ {
+  "id": "w8.lfm2.5-vl-3b",
+  "scores": "scores/w8.lfm2.5-vl-3b.csv.gz",
+  "run": "lfm2.5-vl-3b-vllm-image_list-16f448-plain-fp16-5-vl-3b.own-w8a16-eval-90e38658",
+  "items": 2943,
+  "host": "a100"
+ },
+ {
+  "id": "llama.lfm2.5-vl-3b",
+  "scores": "scores/llama.lfm2.5-vl-3b.csv.gz",
+  "run": "lfm2.5-vl-3b-llamacpp-image_list-16f448-plain-5-vl-3b.liquid-gguf-eval-23b48258",
+  "items": 2943,
+  "host": "a100"
+ },
+ {
+  "id": "f8.qwen3-vl-8b",
+  "scores": "scores/f8.qwen3-vl-8b.csv.gz",
+  "run": "qwen3-vl-8b-vllm-image_list-8f448-plain-fp16-bi-cyankiwi-awq4-eval-2cbe5221",
+  "items": 2943,
+  "host": "a100"
+ },
+ {
+  "id": "f32.qwen3-vl-8b",
+  "scores": "scores/f32.qwen3-vl-8b.csv.gz",
+  "run": "qwen3-vl-8b-vllm-image_list-32f448-plain-fp16-bi-cyankiwi-awq4-eval-43a8b501",
+  "items": 2943,
+  "host": "a100"
+ },
+ {
+  "id": "cap896.qwen3-vl-8b",
+  "scores": "scores/cap896.qwen3-vl-8b.csv.gz",
+  "run": "qwen3-vl-8b-vllm-image_list-16f896-plain-fp16-bi-cyankiwi-awq4-eval-18637ba5",
+  "items": 2943,
+  "host": "a100"
+ },
+ {
+  "id": "w16.qwen3-vl-8b",
+  "scores": "scores/w16.qwen3-vl-8b.csv.gz",
+  "run": "qwen3-vl-8b-vllm-image_list-16f448-plain-fp16-bi-eval-1f37c086",
+  "items": 2943,
+  "host": "a100"
+ },
+ {
+  "id": "w8.qwen3-vl-8b",
+  "scores": "scores/w8.qwen3-vl-8b.csv.gz",
+  "run": "qwen3-vl-8b-vllm-image_list-16f448-plain-fp16-bi-cyankiwi-awq8-eval-13491635",
+  "items": 2943,
+  "host": "a100"
+ },
+ {
+  "id": "llama.qwen3-vl-8b",
+  "scores": "scores/llama.qwen3-vl-8b.csv.gz",
+  "run": "qwen3-vl-8b-llamacpp-image_list-16f448-plain-qwen-gguf-eval-cebb6b56",
+  "items": 2943,
+  "host": "a100"
+ },
+ {
+  "id": "f8.nemotron-3-nano-omni",
+  "scores": "scores/f8.nemotron-3-nano-omni.csv.gz",
+  "run": "nemotron-3-nano-omni-vllm-image_list-8f448-plain-drawais-w4a16-eval-22cefab6",
+  "items": 2943,
+  "host": "a100"
+ },
+ {
+  "id": "f32.nemotron-3-nano-omni",
+  "scores": "scores/f32.nemotron-3-nano-omni.csv.gz",
+  "run": "nemotron-3-nano-omni-vllm-image_list-32f448-plain-drawais-w4a16-eval-c9ee76a7",
+  "items": 2943,
+  "host": "a100"
+ },
+ {
+  "id": "cap896.nemotron-3-nano-omni",
+  "scores": "scores/cap896.nemotron-3-nano-omni.csv.gz",
+  "run": "nemotron-3-nano-omni-vllm-image_list-16f896-plain-drawais-w4a16-eval-92dcd590",
+  "items": 2943,
+  "host": "a100"
+ },
+ {
+  "id": "llama.nemotron-3-nano-omni",
+  "scores": "scores/llama.nemotron-3-nano-omni.csv.gz",
+  "run": "nemotron-3-nano-omni-llamacpp-image_list-16f448-plain-ggml-gguf-eval-209b7c13",
+  "items": 2943,
+  "host": "a100"
+ },
+ {
+  "id": "vendor.lfm2.5-vl-3b",
+  "scores": "scores/vendor.lfm2.5-vl-3b.csv.gz",
+  "run": "lfm2.5-vl-3b-vllm-image_list-16f448-plain-vendor-fp16-5-vl-3b.sahilchachra-awq-eval-36638654",
+  "items": 2943,
+  "host": "a100"
+ },
+ {
+  "id": "constrained.lfm2.5-vl-3b",
+  "scores": "scores/constrained.lfm2.5-vl-3b.csv.gz",
+  "run": "lfm2.5-vl-3b-vllm-image_list-16f448-plain-fp16-constrained-5-vl-3b.sahilchachra-awq-eval-15c675d9",
+  "items": 2943,
+  "host": "a100"
+ },
+ {
+  "id": "constrained.qwen3-vl-8b",
+  "scores": "scores/constrained.qwen3-vl-8b.csv.gz",
+  "run": "qwen3-vl-8b-vllm-image_list-16f448-plain-fp16-bi-constrained-cyankiwi-awq4-eval-772c0f3f",
+  "items": 2943,
+  "host": "a100"
+ },
+ {
+  "id": "video.qwen3-vl-8b",
+  "scores": "scores/video.qwen3-vl-8b.csv.gz",
+  "run": "qwen3-vl-8b-vllm-native_video-16f448-plain-fp16-bi-cyankiwi-awq4-eval-21e19942",
+  "items": 2943,
+  "host": "a100"
+ },
+ {
+  "id": "think_anchor.nemotron-3-nano-omni",
+  "scores": "scores/think_anchor.nemotron-3-nano-omni.csv.gz",
+  "run": "nemotron-3-nano-omni-vllm-image_list-16f448-plain-think-vendor-eval-05105015",
+  "items": 2943,
+  "host": "a100"
+ },
+ {
+  "id": "think_pivot.nemotron-3-nano-omni",
+  "scores": "scores/think_pivot.nemotron-3-nano-omni.csv.gz",
+  "run": "nemotron-3-nano-omni-vllm-image_list-16f448-plain-think-vendor-drawais-w4a16-eval-882264f6",
+  "items": 2943,
+  "host": "a100"
+ },
+ {
+  "id": "tarbench_think.nemotron-3-nano-omni",
+  "scores": "tarbench/tarbench_think.nemotron-3-nano-omni.csv",
+  "run": "",
+  "host": "a100"
+ },
+ {
+  "id": "vendor.nemotron-3-nano-omni",
+  "scores": "scores/vendor.nemotron-3-nano-omni.csv.gz",
+  "run": "nemotron-3-nano-omni-vllm-image_list-16f448-plain-vendor-drawais-w4a16-eval-8fb6b868",
+  "items": 2943,
+  "host": "a100"
+ },
+ {
+  "id": "constrained.nemotron-3-nano-omni",
+  "scores": "scores/constrained.nemotron-3-nano-omni.csv.gz",
+  "run": "nemotron-3-nano-omni-vllm-image_list-16f448-plain-constrained-drawais-w4a16-eval-ccc37b2a",
+  "items": 2943,
+  "host": "a100"
+ },
+ {
+  "id": "kvq8.qwen3-vl-8b",
+  "scores": "scores/kvq8.qwen3-vl-8b.csv.gz",
+  "run": "qwen3-vl-8b-llamacpp-image_list-16f448-plain-kvq8_0-qwen-gguf-eval-92563493",
+  "items": 2943,
+  "host": "a100"
+ },
+ {
+  "id": "q8mmproj.qwen3-vl-8b",
+  "scores": "scores/q8mmproj.qwen3-vl-8b.csv.gz",
+  "run": "qwen3-vl-8b-llamacpp-image_list-16f448-plain-qwen-gguf-q8mmproj-eval-ce2ae222",
+  "items": 2943,
+  "host": "a100"
+ },
+ {
+  "id": "dev.nemotron-3-nano-omni",
+  "scores": "thinking_dev/dev.nemotron-3-nano-omni.json",
+  "run": "nemotron-3-nano-omni-vllm-image_list-16f448-plain-dev-5bfb3c0a",
+  "host": "a100"
+ },
+ {
+  "id": "dev.qwen3.8-27b",
+  "scores": "thinking_dev/dev.qwen3.8-27b.json",
+  "run": "qwen3.8-27b-vllm-image_list-16f448-plain-dev-02a9fd9f",
+  "host": "a100"
+ },
+ {
+  "id": "dev.qwen3.5-9b",
+  "scores": "thinking_dev/dev.qwen3.5-9b.json",
+  "run": "qwen3.5-9b-vllm-image_list-16f448-plain-dev-3b974a71",
+  "host": "a100"
+ },
+ {
+  "id": "dev.glm-4.6v-flash",
+  "scores": "thinking_dev/dev.glm-4.6v-flash.json",
+  "run": "glm-4.6v-flash-vllm-image_list-16f448-plain-bi-dev-90b2d69b",
+  "host": "a100"
+ },
+ {
+  "id": "think_dev.nemotron-3-nano-omni",
+  "scores": "thinking_dev/think_dev.nemotron-3-nano-omni.json",
+  "run": "nemotron-3-nano-omni-vllm-image_list-16f448-plain-think-vendor-dev-62f1b98a",
+  "host": "a100"
+ },
+ {
+  "id": "think_dev.qwen3.8-27b",
+  "scores": "thinking_dev/think_dev.qwen3.8-27b.json",
+  "run": "qwen3.8-27b-vllm-image_list-16f448-plain-think-vendor-dev-6db3c645",
+  "host": "a100"
+ },
+ {
+  "id": "think_dev.qwen3.5-9b",
+  "scores": "thinking_dev/think_dev.qwen3.5-9b.json",
+  "run": "qwen3.5-9b-vllm-image_list-16f448-plain-think-vendor-dev-9e3976c6",
+  "host": "a100"
+ },
+ {
+  "id": "think_dev.glm-4.6v-flash",
+  "scores": "thinking_dev/think_dev.glm-4.6v-flash.json",
+  "run": "glm-4.6v-flash-vllm-image_list-16f448-plain-think-vendor-bi-dev-d26ae5a0",
+  "host": "a100"
+ },
+ {
+  "id": "pivot.qwen3.8-27b",
+  "scores": "",
+  "run": ""
+ },
+ {
+  "id": "edgellm.qwen3-vl-8b",
+  "scores": "scores/edgellm.qwen3-vl-8b.csv.gz",
+  "run": "qwen3-vl-8b-edgellm-image_list-16f448-plain-own-edgellm-awq4-eval-2b878be4",
+  "items": 2943,
+  "host": "orin"
+ },
+ {
+  "id": "edgellm_b12.qwen3-vl-8b",
+  "scores": "",
+  "run": ""
+ }
+]

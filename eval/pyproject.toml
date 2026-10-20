@@ -1,0 +1,41 @@
+[project]
+name = "tar-eval"
+version = "0.1.0"
+description = "Subsets, frame cache, scorer, statistics and figures for the Jetson AGX Orin VLM study"
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "tar-tools",
+    # BERTScore parity with the official test/evaluate.py, which pins
+    # transformers 4.x: under 5.x the metric shifts by up to 0.02 absolute.
+    "transformers==4.57.0",
+    "bert-score>=0.3.12",
+    "torch>=2.7",
+    "numpy>=1.24",
+    "pandas>=2.0",
+    "pillow>=10.0",
+    "matplotlib==3.10.*",
+]
+
+[dependency-groups]
+dev = ["pytest>=8"]
+
+[project.scripts]
+tar-eval-slices = "tar_eval.slices:main"
+tar-eval-frames = "tar_eval.frames:main"
+tar-eval-score = "tar_eval.score:main"
+tar-eval-compare = "tar_eval.compare:main"
+tar-eval-baselines = "tar_eval.baselines:main"
+tar-eval-tarbench = "tar_eval.tarbench:main"
+tar-eval-figures = "tar_eval.figures:main"
+tar-eval-results = "tar_eval.results:main"
+
+[tool.uv.sources]
+tar-tools = { path = "../tools/tar", editable = true }
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["tar_eval"]

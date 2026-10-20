@@ -1,0 +1,13 @@
+[project]
+name = "tar-quantize"
+version = "0.1.0"
+description = "Our own INT4 (W4A16) checkpoints for models with no community build (task 009)"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    # llm-compressor's own pins: transformers 5.15-5.17, compressed-tensors 0.19.0.
+    "llmcompressor==0.14.0",
+    "transformers==5.16.0",
+]
+
+[tool.uv]
+package = false

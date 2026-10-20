@@ -1,0 +1,30 @@
+[project]
+name = "tar-tools"
+version = "0.1.0"
+description = "Acquisition and inspection tooling for the TAR (Traffic Anomaly Reasoning) dataset"
+readme = "README.md"
+requires-python = ">=3.12,<3.14"
+dependencies = [
+    "huggingface-hub>=0.35",
+    "requests>=2.32",
+    "tqdm>=4.66",
+    "gdown>=5.2",
+    "kaggle>=1.7",
+    "yt-dlp>=2024.1.1",
+    "pillow>=10.0",
+]
+
+[project.scripts]
+tar-fetch-annotations = "tar_tools.fetch_annotations:main"
+tar-analyze-annotations = "tar_tools.analyze_annotations:main"
+tar-fetch-videos = "tar_tools.fetch_videos:main"
+tar-probe-media = "tar_tools.probe_media:main"
+tar-coverage = "tar_tools.coverage:main"
+tar-timestamp-check = "tar_tools.timestamps:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["tar_tools"]

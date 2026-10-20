@@ -1,0 +1,72 @@
+{
+  "items": 1181,
+  "videos": 100,
+  "items_per_task": {
+    "bcq": 200,
+    "bcq_openended": 200,
+    "mcq": 100,
+    "mcq_openended": 100,
+    "open_qa": 100,
+    "scene_description": 99,
+    "video_summarization": 100,
+    "temporal_localization": 99,
+    "temporal_description": 88,
+    "causal_linkage": 95
+  },
+  "official": {
+    "bcq_accuracy": 0.76,
+    "bcq_openended_bertscore_f1": 0.242744,
+    "mcq_accuracy": 0.76,
+    "mcq_openended_bertscore_f1": 0.344903,
+    "open_qa_bertscore_f1": 0.227906,
+    "scene_description_bertscore_f1": 0.245182,
+    "video_summarization_bertscore_f1": 0.230497,
+    "temporal_localization_miou": 0.360228,
+    "temporal_description_bertscore_f1": 0.172699,
+    "causal_linkage_bertscore_f1": 0.209113
+  },
+  "extra": {
+    "bcq_accuracy_final": 0.76,
+    "bcq_openended_exact_accuracy": 0.77,
+    "bcq_openended_accuracy_final": 0.77,
+    "mcq_accuracy_final": 0.75,
+    "mcq_openended_letter_accuracy": 0.73,
+    "mcq_openended_accuracy_final": 0.72,
+    "temporal_localization_miou_unparseable_as_zero": 0.323841,
+    "temporal_localization_miou_final": 0.336404,
+    "temporal_localization_parse_rate_final": 0.959596
+  },
+  "parse_rates": {
+    "bcq": {
+      "strict": 0.965,
+      "lenient": 0.01,
+      "fail": 0.025
+    },
+    "bcq_openended": {
+      "strict": 0.98,
+      "lenient": 0.0,
+      "fail": 0.02
+    },
+    "mcq": {
+      "strict": 0.95,
+      "lenient": 0.02,
+      "fail": 0.03
+    },
+    "mcq_openended": {
+      "strict": 0.78,
+      "lenient": 0.19,
+      "fail": 0.03
+    },
+    "temporal_localization": {
+      "strict": 0.899,
+      "lenient": 0.0,
+      "fail": 0.101
+    }
+  },
+  "official_mean": 0.355327,
+  "mean_9_tasks": 0.354783,
+  "slice": "<repo>/eval/slices/dev.jsonl",
+  "predictions": "<repo>/runs/009/qwen3.5-9b-vllm-image_list-16f448-plain-think-vendor-dev-9e3976c6/predictions.jsonl",
+  "tasks": "all",
+  "prefix": null
+}

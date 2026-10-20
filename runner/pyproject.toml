@@ -1,0 +1,39 @@
+[project]
+name = "tar-runner"
+version = "0.1.0"
+description = "Model runner and Jetson benchmark for the TAR study: adapters x backends x settings"
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    # vLLM pins torch and requires transformers 5.x, which is why inference
+    # lives apart from the scorer (eval/ pins transformers 4.57.0).
+    "vllm==0.30.0",
+    # FlashInfer compiles some kernels (vLLM's top-k/top-p sampler) on first
+    # use. tar_runner points it at this toolkit rather than the host's; the
+    # compiler, its headers and its code generator are pinned to the 13.0 of
+    # the CUDA runtime torch brings, since mixed versions reject each other.
+    # The A100's system nvcc was too old to build them (009).
+    "nvidia-cuda-nvcc==13.0.88",
+    "nvidia-cuda-crt==13.0.88",
+    "nvidia-nvvm==13.0.88",
+    "accelerate>=1.0",
+    "pillow>=10.0",
+    "numpy>=1.24",
+]
+
+[project.scripts]
+tar-run = "tar_runner.run:main"
+tar-probe = "tar_runner.probe:main"
+tar-bench = "tar_runner.bench:main"
+tar-config = "tar_runner.configs:main"
+
+[project.entry-points."vllm.general_plugins"]
+# transformers-4 processor compatibility, in every vLLM process (tar_runner/compat.py)
+tar_compat = "tar_runner.compat:register"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["tar_runner"]

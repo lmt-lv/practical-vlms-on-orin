@@ -1,0 +1,14 @@
+[project]
+name = "tar-hf-transformers-457"
+version = "0.1.0"
+description = "HF reference backend on transformers 4.57.1, for Hub models whose own code needs transformers 4 (Molmo2: ROPE_INIT_FUNCTIONS['default'], processor optional_attributes). Runs the runner's own code via PYTHONPATH."
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "transformers==4.57.1",   # Molmo2's generation_config: transformers_version 4.57.1
+    "torch==2.13.0",          # as the runner (vLLM 0.30's pin)
+    "torchvision",
+    "accelerate>=1.0",
+    "pillow>=10.0",
+    "numpy>=1.24",
+    "einops",                 # Molmo2's modelling code
+]

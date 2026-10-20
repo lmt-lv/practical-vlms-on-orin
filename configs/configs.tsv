@@ -1,0 +1,95 @@
+# Every configuration in the paper, one per line. Run one with
+#   uv run --project runner tar-config run <id>
+# Columns, tab-separated:
+#   id       <kind>.<model>; kinds: anchor (BF16 reference), pivot (INT4
+#            configuration), noframes (question only), tarbench, the sweep's
+#            settings (f8, f32, cap896, w8, w16, llama, kvq8, q8mmproj, vendor,
+#            constrained, video, think_anchor, think_pivot), dev/think_dev
+#            (thinking off/on, development subset), edgellm
+#   group    baseline | sweep | tarbench | thinking | runtime
+#   model    the runner's model key (runner/tar_runner/adapters.py)
+#   dtype    activation dtype; - for llama.cpp and Edge-LLM
+#   backend  vllm | llamacpp | edgellm
+#   subset   eval | dev | tarbench
+#   videos   - for the whole subset; N for its first N videos by priority
+#   args     the rest of the tar-run arguments
+#   orin     the Orin power modes it was timed in (results/orin/bench.csv), or -
+# All runs are greedy with thinking off unless args say otherwise, over all
+# ten question types, and batch-invariant on vLLM where the model allows it.
+id	group	model	dtype	backend	subset	videos	args	orin
+pivot.lfm2.5-vl-3b	baseline	lfm2.5-vl-3b	float16	vllm	eval	-	--weights lfm2.5-vl-3b.sahilchachra-awq	maxn,30w,15w
+pivot.cosmos3-edge	baseline	cosmos3-edge	float16	vllm	eval	-	--weights cosmos3-edge.own-w4a16	maxn,30w,15w
+pivot.north-micro	baseline	north-micro	float16	vllm	eval	-	--weights north-micro.own-w4a16	maxn,30w,15w
+pivot.glm-4.6v-flash	baseline	glm-4.6v-flash	float16	vllm	eval	-	--weights glm-4.6v-flash.cyankiwi-awq4	maxn,30w,15w
+pivot.cosmos3-nano	baseline	cosmos3-nano	float16	vllm	eval	-	--weights cosmos3-nano.nathanth-w4a16	maxn,30w,15w
+pivot.qwen3-vl-8b	baseline	qwen3-vl-8b	float16	vllm	eval	-	--weights qwen3-vl-8b.cyankiwi-awq4	maxn,30w,15w
+pivot.nemotron-3-nano-omni	baseline	nemotron-3-nano-omni	bfloat16	vllm	eval	-	--weights nemotron-3-nano-omni.drawais-w4a16	maxn,30w,15w
+pivot.molmo2-8b	baseline	molmo2-8b	bfloat16	vllm	eval	-	--weights molmo2-8b.own-w4a16	maxn,30w,15w
+pivot.qwen3.5-9b	baseline	qwen3.5-9b	float16	vllm	eval	-	--weights qwen3.5-9b.cyankiwi-awq4	maxn,30w,15w
+anchor.lfm2.5-vl-3b	baseline	lfm2.5-vl-3b	bfloat16	vllm	eval	-		-
+anchor.cosmos3-edge	baseline	cosmos3-edge	bfloat16	vllm	eval	-		-
+anchor.north-micro	baseline	north-micro	bfloat16	vllm	eval	-		-
+anchor.cosmos3-nano	baseline	cosmos3-nano	bfloat16	vllm	eval	-		-
+anchor.glm-4.6v-flash	baseline	glm-4.6v-flash	bfloat16	vllm	eval	-		-
+anchor.qwen3-vl-8b	baseline	qwen3-vl-8b	bfloat16	vllm	eval	-		-
+anchor.nemotron-3-nano-omni	baseline	nemotron-3-nano-omni	bfloat16	vllm	eval	-		-
+anchor.qwen3.5-9b	baseline	qwen3.5-9b	bfloat16	vllm	eval	-		-
+anchor.molmo2-8b	baseline	molmo2-8b	bfloat16	vllm	eval	-		-
+anchor.qwen3.8-27b	baseline	qwen3.8-27b	bfloat16	vllm	eval	-		-
+tarbench.lfm2.5-vl-3b	tarbench	lfm2.5-vl-3b	bfloat16	vllm	tarbench	-		-
+tarbench.cosmos3-edge	tarbench	cosmos3-edge	bfloat16	vllm	tarbench	-		-
+tarbench.north-micro	tarbench	north-micro	bfloat16	vllm	tarbench	-		-
+tarbench.cosmos3-nano	tarbench	cosmos3-nano	bfloat16	vllm	tarbench	-		-
+tarbench.glm-4.6v-flash	tarbench	glm-4.6v-flash	bfloat16	vllm	tarbench	-		-
+tarbench.qwen3-vl-8b	tarbench	qwen3-vl-8b	bfloat16	vllm	tarbench	-		-
+tarbench.nemotron-3-nano-omni	tarbench	nemotron-3-nano-omni	bfloat16	vllm	tarbench	-		-
+tarbench.qwen3.5-9b	tarbench	qwen3.5-9b	bfloat16	vllm	tarbench	-		-
+tarbench.molmo2-8b	tarbench	molmo2-8b	bfloat16	vllm	tarbench	-		-
+tarbench.qwen3.8-27b	tarbench	qwen3.8-27b	bfloat16	vllm	tarbench	-		-
+noframes.lfm2.5-vl-3b	baseline	lfm2.5-vl-3b	bfloat16	vllm	eval	-	--mode no_frames	-
+noframes.cosmos3-edge	baseline	cosmos3-edge	bfloat16	vllm	eval	-	--mode no_frames	-
+noframes.north-micro	baseline	north-micro	bfloat16	vllm	eval	-	--mode no_frames	-
+noframes.cosmos3-nano	baseline	cosmos3-nano	bfloat16	vllm	eval	-	--mode no_frames	-
+noframes.glm-4.6v-flash	baseline	glm-4.6v-flash	bfloat16	vllm	eval	-	--mode no_frames	-
+noframes.qwen3-vl-8b	baseline	qwen3-vl-8b	bfloat16	vllm	eval	-	--mode no_frames	-
+noframes.nemotron-3-nano-omni	baseline	nemotron-3-nano-omni	bfloat16	vllm	eval	-	--mode no_frames	-
+noframes.qwen3.5-9b	baseline	qwen3.5-9b	bfloat16	vllm	eval	-	--mode no_frames	-
+noframes.molmo2-8b	baseline	molmo2-8b	bfloat16	vllm	eval	-	--mode no_frames	-
+f8.lfm2.5-vl-3b	sweep	lfm2.5-vl-3b	float16	vllm	eval	250	--weights lfm2.5-vl-3b.sahilchachra-awq --frames 8	maxn
+f32.lfm2.5-vl-3b	sweep	lfm2.5-vl-3b	float16	vllm	eval	250	--weights lfm2.5-vl-3b.sahilchachra-awq --frames 32	maxn
+cap896.lfm2.5-vl-3b	sweep	lfm2.5-vl-3b	float16	vllm	eval	250	--weights lfm2.5-vl-3b.sahilchachra-awq --cap 896 --max-model-len 12288	maxn
+w16.lfm2.5-vl-3b	sweep	lfm2.5-vl-3b	float16	vllm	eval	250		maxn
+w8.lfm2.5-vl-3b	sweep	lfm2.5-vl-3b	float16	vllm	eval	250	--weights lfm2.5-vl-3b.own-w8a16	maxn
+llama.lfm2.5-vl-3b	sweep	lfm2.5-vl-3b	-	llamacpp	eval	250	--weights lfm2.5-vl-3b.liquid-gguf	maxn
+f8.qwen3-vl-8b	sweep	qwen3-vl-8b	float16	vllm	eval	250	--weights qwen3-vl-8b.cyankiwi-awq4 --frames 8	maxn
+f32.qwen3-vl-8b	sweep	qwen3-vl-8b	float16	vllm	eval	250	--weights qwen3-vl-8b.cyankiwi-awq4 --frames 32	maxn
+cap896.qwen3-vl-8b	sweep	qwen3-vl-8b	float16	vllm	eval	250	--weights qwen3-vl-8b.cyankiwi-awq4 --cap 896 --max-model-len 12288	maxn
+w16.qwen3-vl-8b	sweep	qwen3-vl-8b	float16	vllm	eval	250		maxn
+w8.qwen3-vl-8b	sweep	qwen3-vl-8b	float16	vllm	eval	250	--weights qwen3-vl-8b.cyankiwi-awq8	maxn
+llama.qwen3-vl-8b	sweep	qwen3-vl-8b	-	llamacpp	eval	250	--weights qwen3-vl-8b.qwen-gguf	maxn
+f8.nemotron-3-nano-omni	sweep	nemotron-3-nano-omni	bfloat16	vllm	eval	250	--weights nemotron-3-nano-omni.drawais-w4a16 --frames 8	maxn
+f32.nemotron-3-nano-omni	sweep	nemotron-3-nano-omni	bfloat16	vllm	eval	250	--weights nemotron-3-nano-omni.drawais-w4a16 --frames 32 --max-model-len 11264	maxn
+cap896.nemotron-3-nano-omni	sweep	nemotron-3-nano-omni	bfloat16	vllm	eval	250	--weights nemotron-3-nano-omni.drawais-w4a16 --cap 896 --max-model-len 21504	maxn
+llama.nemotron-3-nano-omni	sweep	nemotron-3-nano-omni	-	llamacpp	eval	250	--weights nemotron-3-nano-omni.ggml-gguf	maxn
+vendor.lfm2.5-vl-3b	sweep	lfm2.5-vl-3b	float16	vllm	eval	250	--weights lfm2.5-vl-3b.sahilchachra-awq --decoding vendor	-
+constrained.lfm2.5-vl-3b	sweep	lfm2.5-vl-3b	float16	vllm	eval	250	--weights lfm2.5-vl-3b.sahilchachra-awq --constrained	maxn
+constrained.qwen3-vl-8b	sweep	qwen3-vl-8b	float16	vllm	eval	250	--weights qwen3-vl-8b.cyankiwi-awq4 --constrained	maxn
+video.qwen3-vl-8b	sweep	qwen3-vl-8b	float16	vllm	eval	250	--weights qwen3-vl-8b.cyankiwi-awq4 --mode native_video	maxn
+think_anchor.nemotron-3-nano-omni	sweep	nemotron-3-nano-omni	bfloat16	vllm	eval	250	--thinking on	-
+think_pivot.nemotron-3-nano-omni	sweep	nemotron-3-nano-omni	bfloat16	vllm	eval	250	--weights nemotron-3-nano-omni.drawais-w4a16 --thinking on	maxn
+tarbench_think.nemotron-3-nano-omni	tarbench	nemotron-3-nano-omni	bfloat16	vllm	tarbench	-	--thinking on	-
+vendor.nemotron-3-nano-omni	sweep	nemotron-3-nano-omni	bfloat16	vllm	eval	250	--weights nemotron-3-nano-omni.drawais-w4a16 --decoding vendor	-
+constrained.nemotron-3-nano-omni	sweep	nemotron-3-nano-omni	bfloat16	vllm	eval	250	--weights nemotron-3-nano-omni.drawais-w4a16 --constrained	maxn
+kvq8.qwen3-vl-8b	sweep	qwen3-vl-8b	-	llamacpp	eval	250	--weights qwen3-vl-8b.qwen-gguf --kv-cache-dtype q8_0	maxn
+q8mmproj.qwen3-vl-8b	sweep	qwen3-vl-8b	-	llamacpp	eval	250	--weights qwen3-vl-8b.qwen-gguf-q8mmproj	maxn
+dev.nemotron-3-nano-omni	thinking	nemotron-3-nano-omni	bfloat16	vllm	dev	-		-
+dev.qwen3.8-27b	thinking	qwen3.8-27b	bfloat16	vllm	dev	-		-
+dev.qwen3.5-9b	thinking	qwen3.5-9b	bfloat16	vllm	dev	-		-
+dev.glm-4.6v-flash	thinking	glm-4.6v-flash	bfloat16	vllm	dev	-		-
+think_dev.nemotron-3-nano-omni	thinking	nemotron-3-nano-omni	bfloat16	vllm	dev	-	--thinking on	-
+think_dev.qwen3.8-27b	thinking	qwen3.8-27b	bfloat16	vllm	dev	-	--thinking on	-
+think_dev.qwen3.5-9b	thinking	qwen3.5-9b	bfloat16	vllm	dev	-	--thinking on	-
+think_dev.glm-4.6v-flash	thinking	glm-4.6v-flash	bfloat16	vllm	dev	-	--thinking on	-
+pivot.qwen3.8-27b	baseline	qwen3.8-27b	-	llamacpp	eval	-	--weights qwen3.8-27b.unsloth-gguf	maxn
+edgellm.qwen3-vl-8b	runtime	qwen3-vl-8b	-	edgellm	eval	250	--weights qwen3-vl-8b.own-edgellm-awq4	maxn
+edgellm_b12.qwen3-vl-8b	runtime	qwen3-vl-8b	-	edgellm	eval	-	--weights qwen3-vl-8b.own-edgellm-awq4	maxn

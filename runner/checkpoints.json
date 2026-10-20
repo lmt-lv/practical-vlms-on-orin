@@ -1,0 +1,212 @@
+{
+  "about": "INT4 checkpoints per model and Orin runtime, chosen from the Hub's quantized derivatives (read from their configs and files): the best community build per runtime, our own only where none exists. 'role': primary is the configuration's build; alternate was considered only if the primary failed its sanity check; own marks a build we make ourselves. Vision towers stay 16-bit in every choice: GGUF entries take the F16/BF16 mmproj, not Q8_0. Tags are stable ids: runs record them. 'knob' marks a checkpoint for one of the deployment sweep's settings (W8A16, the Q8_0 mmproj), not an INT4 configuration.",
+  "checkpoints": {
+    "qwen3-vl-8b.cyankiwi-awq4": {
+      "model": "qwen3-vl-8b", "runtime": "vllm", "role": "primary",
+      "repo": "cyankiwi/Qwen3-VL-8B-Instruct-AWQ-4bit", "revision": "87196f7771efdd7022a8d8f094ac6e063bf87f5c",
+      "format": "compressed-tensors W4A16, group 32, symmetric; vision tower 16-bit",
+      "why": "most used W4A16 build (569K downloads); no official INT4 safetensors"
+    },
+    "qwen3-vl-8b.sherlock-w4a16": {
+      "model": "qwen3-vl-8b", "runtime": "vllm", "role": "alternate",
+      "repo": "SherlockID365/Qwen3-VL-8B-Instruct-quantized.w4a16", "revision": "df4a2980484af5f44ee5502468844a6e53d9e0d1",
+      "format": "compressed-tensors W4A16, group 128, symmetric; vision tower 16-bit"
+    },
+    "qwen3-vl-8b.cyankiwi-awq8": {
+      "model": "qwen3-vl-8b", "runtime": "vllm", "role": "knob",
+      "repo": "cyankiwi/Qwen3-VL-8B-Instruct-AWQ-8bit", "revision": "b04adf6a317f6580bc261cc876f3f7103e81775d",
+      "format": "compressed-tensors W8A16, group 32, symmetric (MSE observer); vision tower and lm_head 16-bit",
+      "why": "the W8A16 setting of the deployment sweep; the same quantizer and group size as the W4A16 pivot"
+    },
+    "qwen3.5-9b.redhat-w4a16": {
+      "model": "qwen3.5-9b", "runtime": "vllm", "role": "alternate",
+      "repo": "RedHatAI/Qwen3.5-9B-quantized.w4a16", "revision": "a398088c4228b0ae0c8c78df88fd1e4bf445f068",
+      "format": "compressed-tensors W4A16, group 128, symmetric; vision tower 16-bit",
+      "why": "Red Hat AI; 163K downloads. Was the primary until the A100 sanity runs: bcq -8.5 against BF16, 81.5% agreement, and a changed answer style"
+    },
+    "qwen3.5-9b.cyankiwi-awq4": {
+      "model": "qwen3.5-9b", "runtime": "vllm", "role": "primary",
+      "repo": "cyankiwi/Qwen3.5-9B-AWQ-4bit", "revision": "156edc4bbeb8d1910ee7be9196bafaf1bc052156",
+      "format": "compressed-tensors W4A16, group 32, symmetric",
+      "why": "closer to BF16 than RedHat's on the A100: bcq -3.0, 85.0% agreement, BF16's explain-first answer style kept"
+    },
+    "qwen3.5-9b.cyankiwi-awq8": {
+      "model": "qwen3.5-9b", "runtime": "vllm", "role": "knob",
+      "repo": "cyankiwi/Qwen3.5-9B-AWQ-BF16-INT8", "revision": "c798ade7cba7a3168ca7e1f6d1a31056c31aaa28",
+      "format": "compressed-tensors W8A16, group 32, symmetric; vision tower and linear-attention projections 16-bit",
+      "why": "the W8A16 setting of the deployment sweep; the same quantizer and group size as the W4A16 pivot"
+    },
+    "qwen3.5-9b.quanttrio-awq": {
+      "model": "qwen3.5-9b", "runtime": "vllm", "role": "alternate",
+      "repo": "QuantTrio/Qwen3.5-9B-AWQ", "revision": "938f8e3ef86c9d1e9bec3705e149694c172592f1",
+      "format": "AWQ W4, group 128; attention, linear attention and layer 0 left 16-bit"
+    },
+    "qwen3.8-27b.redhat-int4": {
+      "model": "qwen3.8-27b", "runtime": "vllm", "role": "primary",
+      "repo": "RedHatAI/Qwen3.8-27B-INT4", "revision": "91bd022d5b49442a868bc35008f6c21e1860edfa",
+      "format": "compressed-tensors W4A16, group 128, symmetric; vision tower 16-bit",
+      "why": "Red Hat AI; 570K downloads"
+    },
+    "qwen3.8-27b.cyankiwi-awq4": {
+      "model": "qwen3.8-27b", "runtime": "vllm", "role": "alternate",
+      "repo": "cyankiwi/Qwen3.8-27B-AWQ-INT4", "revision": "6e134bae811fb5adac50ee042ae5f029ac6779aa",
+      "format": "compressed-tensors W4A16, group 32, asymmetric; linear-attention layers 16-bit"
+    },
+    "cosmos3-nano.nathanth-w4a16": {
+      "model": "cosmos3-nano", "runtime": "vllm", "role": "primary",
+      "repo": "NathanTH141/Cosmos3-Nano-Reasoner-W4A16", "revision": "9e23e2a7587928b7d9d8f941538dc5623abc40dd",
+      "format": "compressed-tensors W4A16, group 128, symmetric (llm-compressor recipe included); vision tower 16-bit",
+      "why": "the only INT4 build for vLLM (same Cosmos3ForConditionalGeneration architecture); little used (67 downloads), so the sanity check decides",
+      "layout": {"rename": [["model.language_model.", ""], ["model.visual.", ""]], "weights_subdir": "transformer",
+                 "why": "saved under transformers' names in one flat file; vLLM 0.30's Cosmos3 class maps only NVIDIA's own names and loads only [tv]*er/*.safetensors (tested 2026-09-29)"}
+    },
+    "glm-4.6v-flash.cyankiwi-awq4": {
+      "model": "glm-4.6v-flash", "runtime": "vllm", "role": "primary",
+      "repo": "cyankiwi/GLM-4.6V-Flash-AWQ-4bit", "revision": "8247c4b2a03777ae4512c262752bda20d230f29b",
+      "format": "compressed-tensors W4A16, group 32, symmetric; vision tower 16-bit",
+      "why": "most used W4A16 build (5.3K downloads)"
+    },
+    "glm-4.6v-flash.cyankiwi-awq8": {
+      "model": "glm-4.6v-flash", "runtime": "vllm", "role": "knob",
+      "repo": "cyankiwi/GLM-4.6V-Flash-AWQ-8bit", "revision": "1ceb7beee7ca0136f649c3e0824d2ea32320963c",
+      "format": "compressed-tensors W8A16, group 32, symmetric; vision tower and lm_head 16-bit",
+      "why": "the W8A16 setting of the deployment sweep; the same quantizer and group size as the W4A16 pivot"
+    },
+    "glm-4.6v-flash.usefulquants-w4a16": {
+      "model": "glm-4.6v-flash", "runtime": "vllm", "role": "alternate",
+      "repo": "useful-quants/GLM-4.6V-Flash-W4A16-BF16Vision", "revision": "4a0eb7c2c8af3f55524a6f64f71c0dc532b10a7a",
+      "format": "compressed-tensors W4A16, group 128, symmetric; vision tower BF16",
+      "why": "does not load in vLLM 0.30: its ignore list leaves the vision attention's q, k and v unquantized one by one, which vLLM fuses into one qkv layer ('QKVParallelLinear' object has no attribute 'data')"
+    },
+    "nemotron-3-nano-omni.drawais-w4a16": {
+      "model": "nemotron-3-nano-omni", "runtime": "vllm", "role": "primary",
+      "repo": "drawais/Nemotron-3-Nano-Omni-30B-A3B-W4A16", "revision": "00726ce80c5dafc6b18ddae3994dd6f2a4660524",
+      "format": "compressed-tensors W4A16, group 64, symmetric; Mamba mixers, routers, vision and audio 16-bit",
+      "why": "most used W4A16 build (395 downloads); NVIDIA's own are FP8 and NVFP4, which the Orin cannot run"
+    },
+    "nemotron-3-nano-omni.feanors-awq": {
+      "model": "nemotron-3-nano-omni", "runtime": "vllm", "role": "alternate",
+      "repo": "feanors/nemotron-3-nano-omni-30b-a3b-awq", "revision": "e5569869783445ba04e9331a593f06e6c47b1a1d",
+      "format": "compressed-tensors W4A16, group 64, symmetric; shared experts 16-bit"
+    },
+    "nemotron-3-nano-omni.mattbucci-awq": {
+      "model": "nemotron-3-nano-omni", "runtime": "vllm", "role": "alternate",
+      "repo": "mattbucci/Nemotron-3-Nano-Omni-30B-A3B-Reasoning-AWQ", "revision": "87b1dda3195da09bbee1aef3edaac41ebedcce53",
+      "format": "AWQ W4, group 64; attention, Mamba projections, vision and audio 16-bit"
+    },
+    "lfm2.5-vl-3b.sahilchachra-awq": {
+      "model": "lfm2.5-vl-3b", "runtime": "vllm", "role": "primary",
+      "repo": "sahilchachra/LFM2.5-VL-3B-AWQ", "revision": "09d18ae380dd439a83e4ba688b6f8dc6ba5aa6b7",
+      "format": "compressed-tensors W4A16, group 128, symmetric (llm-compressor recipe included); vision tower, projector and conv projections 16-bit",
+      "why": "the only W4A16 build (154 downloads); the official INT4 is GGUF only"
+    },
+
+    "qwen3-vl-8b.qwen-gguf": {
+      "model": "qwen3-vl-8b", "runtime": "llama.cpp", "role": "primary",
+      "repo": "Qwen/Qwen3-VL-8B-Instruct-GGUF", "revision": "f982a07559d4a2f6c8744d840bf6fccab30eea96",
+      "files": ["Qwen3VL-8B-Instruct-Q4_K_M.gguf", "mmproj-Qwen3VL-8B-Instruct-F16.gguf"], "why": "official"
+    },
+    "qwen3-vl-8b.qwen-gguf-q8mmproj": {
+      "model": "qwen3-vl-8b", "runtime": "llama.cpp", "role": "knob",
+      "repo": "Qwen/Qwen3-VL-8B-Instruct-GGUF", "revision": "f982a07559d4a2f6c8744d840bf6fccab30eea96",
+      "files": ["Qwen3VL-8B-Instruct-Q4_K_M.gguf", "mmproj-Qwen3VL-8B-Instruct-Q8_0.gguf"],
+      "why": "the vision-tower precision setting of the deployment sweep: the official GGUF with Qwen's own Q8_0 mmproj"
+    },
+    "qwen3.5-9b.unsloth-gguf": {
+      "model": "qwen3.5-9b", "runtime": "llama.cpp", "role": "primary",
+      "repo": "unsloth/Qwen3.5-9B-GGUF", "revision": "3885219b6810b007914f3a7950a8d1b469d598a5",
+      "files": ["Qwen3.5-9B-Q4_K_M.gguf", "mmproj-F16.gguf"], "why": "most used (1.3M downloads); no official GGUF"
+    },
+    "qwen3.8-27b.unsloth-gguf": {
+      "model": "qwen3.8-27b", "runtime": "llama.cpp", "role": "primary",
+      "repo": "unsloth/Qwen3.8-27B-GGUF", "revision": "4ca720788d1e01f1bff70c033e0d0028fd02e502",
+      "files": ["Qwen3.8-27B-UD-Q4_K_M.gguf", "mmproj-F16.gguf"], "why": "most used (6.4M downloads); 16.5 GB, fits the Orin"
+    },
+    "cosmos3-nano.hobforge-gguf": {
+      "model": "cosmos3-nano", "runtime": "llama.cpp", "role": "primary",
+      "repo": "Hob-forge/Cosmos3-Nano-GGUF", "revision": "870ce4e7a05f5c7303a1be741c1502a2f4dfd716",
+      "files": ["Cosmos3-Nano-VLM.Q4_K_M.gguf", "mmproj-Cosmos3-Nano-VLM.f16.gguf"],
+      "why": "the only GGUF; the reasoner re-keyed to Qwen3-VL (125 downloads)"
+    },
+    "glm-4.6v-flash.unsloth-gguf": {
+      "model": "glm-4.6v-flash", "runtime": "llama.cpp", "role": "primary",
+      "repo": "unsloth/GLM-4.6V-Flash-GGUF", "revision": "c78a0727cb5ee489db2f218a212f613943023ee8",
+      "files": ["GLM-4.6V-Flash-Q4_K_M.gguf", "mmproj-F16.gguf"],
+      "why": "F16 mmproj (ggml-org's is Q8_0); llama.cpp takes GLM-4.6V as images only"
+    },
+    "molmo2-8b.mu2-gguf": {
+      "model": "molmo2-8b", "runtime": "llama.cpp", "role": "primary",
+      "repo": "mu2solutions/Molmo2-8B-GGUF", "revision": "61c7e7dd2199647c0f6a69b2e14413aeb595fcc8",
+      "files": ["Molmo2-8B-text-Q4_K_M.gguf", "Molmo2-8B-mmproj-F16.gguf"],
+      "why": "the only GGUF (508 downloads); llama.cpp cannot load its mmproj (unknown projector type: molmo2)"
+    },
+    "nemotron-3-nano-omni.ggml-gguf": {
+      "model": "nemotron-3-nano-omni", "runtime": "llama.cpp", "role": "primary",
+      "repo": "ggml-org/NVIDIA-Nemotron-3-Nano-Omni-30B-A3B-GGUF", "revision": "996e29faecf72c0ffac11c6591b4603a1583968c",
+      "files": ["NVIDIA-Nemotron-3-Nano-Omni-30B-A3B-Q4_K_M.gguf", "mmproj-NVIDIA-Nemotron-3-Nano-Omni-30B-A3B-BF16.gguf"],
+      "why": "llama.cpp's own org; 22.4 GB, tight on the 32 GB Orin"
+    },
+    "lfm2.5-vl-3b.liquid-gguf": {
+      "model": "lfm2.5-vl-3b", "runtime": "llama.cpp", "role": "primary",
+      "repo": "LiquidAI/LFM2.5-VL-3B-GGUF", "revision": "6f730e9a2c454e8af9adc29db58e638e01e5957f",
+      "files": ["LFM2.5-VL-3B-Q4_K_M.gguf", "mmproj-LFM2.5-VL-3B-F16.gguf"], "why": "official"
+    },
+    "kimi-vl-a3b.mradermacher-gguf": {
+      "model": "kimi-vl-a3b", "runtime": "llama.cpp", "role": "alternate",
+      "repo": "mradermacher/Kimi-VL-A3B-Instruct-GGUF", "revision": "d645665be0a3028dca3ef3d08dddb51ab23ecf31",
+      "files": ["Kimi-VL-A3B-Instruct.Q4_K_M.gguf", "Kimi-VL-A3B-Instruct.mmproj-f16.gguf"],
+      "why": "only if Nemotron is dropped"
+    },
+
+    "cosmos3-edge.ubr-modelopt-int4": {
+      "model": "cosmos3-edge", "runtime": "edge-llm", "role": "primary",
+      "repo": "ubr-physical-ai/Cosmos3-Edge-INT4-AWQ", "revision": "0d7d69a34863557ae35e57bb68069c5712da77f4",
+      "format": "ModelOpt INT4 AWQ with ONNX exports and Jetson Orin notes; vision, projector and embeddings 16-bit",
+      "why": "a TensorRT Edge-LLM build, not loadable by vLLM; for the Edge-LLM runtime on the Orin"
+    },
+
+    "molmo2-8b.own-w4a16": {"model": "molmo2-8b", "runtime": "vllm", "role": "own",
+      "repo": null, "revision": null,
+      "format": "compressed-tensors W4A16, group 32, symmetric, RTN (data-free); vision backbone, embeddings, lm_head 16-bit (stored FP32, as the source)",
+      "why": "no INT4 safetensors build exists (FP8/NVFP4/MLX only)"},
+    "north-micro.own-w4a16": {"model": "north-micro", "runtime": "vllm", "role": "own",
+      "repo": null, "revision": null,
+      "format": "compressed-tensors W4A16, group 32, symmetric, RTN (data-free); vision tower, embeddings 16-bit",
+      "why": "no INT4 build for any Orin runtime (MLX and PARO only)"},
+    "lfm2.5-vl-3b.own-w8a16": {
+      "model": "lfm2.5-vl-3b", "runtime": "vllm", "role": "own",
+      "repo": null, "revision": null,
+      "format": "compressed-tensors W8A16, group 32, symmetric, RTN (data-free); vision tower, projector, conv projections, embeddings, lm_head 16-bit",
+      "why": "the W8A16 setting of the deployment sweep, made only if the model is among the tiers' three; no community 8-bit build"
+    },
+    "north-micro.own-w8a16": {
+      "model": "north-micro", "runtime": "vllm", "role": "own",
+      "repo": null, "revision": null,
+      "format": "compressed-tensors W8A16, group 32, symmetric, RTN (data-free); vision tower, embeddings 16-bit",
+      "why": "the W8A16 setting of the deployment sweep, made only if the model is among the tiers' three; no community 8-bit build"
+    },
+    "molmo2-8b.own-w8a16": {
+      "model": "molmo2-8b", "runtime": "vllm", "role": "own",
+      "repo": null, "revision": null,
+      "format": "compressed-tensors W8A16, group 32, symmetric, RTN (data-free); vision backbone, embeddings, lm_head 16-bit (stored FP32, as the source)",
+      "why": "the W8A16 setting of the deployment sweep, made only if the model is among the tiers' three; no community 8-bit build"
+    },
+    "cosmos3-edge.own-w4a16": {"model": "cosmos3-edge", "runtime": "vllm", "role": "own",
+      "repo": null, "revision": null,
+      "format": "compressed-tensors W4A16, group 32, symmetric, RTN (data-free); transformer/ quantized, vision_encoder/ 16-bit, NVIDIA's own layout",
+      "why": "the only INT4 build is an Edge-LLM export"},
+
+    "qwen3-vl-8b.own-edgellm-awq4": {"model": "qwen3-vl-8b", "runtime": "edge-llm", "role": "own",
+      "repo": null, "revision": null,
+      "format": "ModelOpt INT4 AWQ (tensorrt-edgellm-quantize 0.11.0 defaults: 128 calibration samples, lm_head 16-bit); vision tower FP16",
+      "why": "NVIDIA's benchmark configuration; NVIDIA publishes no INT4 AWQ checkpoint (runner/scripts/quantize_edgellm.sh, made on the Orin)"},
+    "cosmos3-edge.own-edgellm-awq4": {"model": "cosmos3-edge", "runtime": "edge-llm", "role": "own",
+      "repo": null, "revision": null,
+      "format": "ModelOpt INT4 AWQ (tensorrt-edgellm-quantize 0.11.0 defaults, on transformers 5.17: 5.14.1 cannot load cosmos3_edge); vision encoder FP16",
+      "why": "the Hub's only Edge-LLM build (ubr) is a v0.10.1 export calibrated on 198 indoor robot frames, and does not run on v0.11"},
+    "qwen3.5-9b.own-edgellm-awq4": {"model": "qwen3.5-9b", "runtime": "edge-llm", "role": "own",
+      "repo": null, "revision": null,
+      "format": "ModelOpt INT4 AWQ (tensorrt-edgellm-quantize 0.11.0 defaults); vision tower 16-bit",
+      "why": "NOT MADE: Qwen3.5-9B uses community quants, and none loads in Edge-LLM; it does not quantize on 32 GB either"}
+  }
+}

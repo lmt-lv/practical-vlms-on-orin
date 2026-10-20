@@ -1,0 +1,26 @@
+[project]
+name = "tar-edgellm"
+version = "0.1.0"
+description = "TensorRT Edge-LLM 0.11 on the Orin (task 005): the published aarch64 wheel, with JetPack's TensorRT bindings"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    # The wheel carries the qualified native payload for Jetson Orin,
+    # JetPack 7.2, CUDA 13, SM87. TensorRT itself is JetPack's
+    # (python3-libnvinfer 10.16.2, /usr/lib/python3.12/dist-packages), seen
+    # through a venv with system site packages: uv venv --system-site-packages.
+    # `tools` adds export (CPU) and ModelOpt quantization.
+    "tensorrt-edgellm[tools]==0.11.0",
+    # ModelOpt builds its CUDA quantization kernels at first use, with ninja
+    # from PATH (run with .venv/bin on PATH, or `uv run`); without
+    # ninja it falls back to CPU ones (40 s per calibration sample, 005).
+    "ninja==1.13.2",
+]
+
+[dependency-groups]
+# Source build of Edge-LLM's C++ tools (llm_build, llm_inference, llm_bench):
+# its CuTe DSL kernels are generated on the board by
+# kernelSrcs/build_cutedsl.py, which pins this version.
+build = ["nvidia-cutlass-dsl[cu13]==4.7.0", "cupy-cuda13x==13.6.0", "pybind11==3.0.4"]
+
+[tool.uv]
+package = false

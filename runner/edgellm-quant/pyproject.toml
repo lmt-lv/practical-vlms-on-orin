@@ -1,0 +1,14 @@
+[project]
+name = "tar-edgellm-quant"
+version = "0.1.0"
+description = "Edge-LLM 0.11 quantization (ModelOpt) for models its pinned transformers 5.14.1 cannot load (Cosmos3-Edge: 5.17 knows cosmos3_edge), task 005. Inference stays in runner/edgellm/."
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "tensorrt-edgellm[tools]==0.11.0",
+    "ninja==1.13.2",
+]
+
+[tool.uv]
+package = false
+# The one difference from runner/edgellm/: the runner's own transformers.
+override-dependencies = ["transformers==5.17.0"]

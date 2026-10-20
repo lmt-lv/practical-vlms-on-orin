@@ -1,0 +1,13 @@
+[project]
+name = "tar-hf-transformers-516"
+version = "0.1.0"
+description = "HF reference backend on transformers 5.16.0, for models whose model code regressed in the runner's 5.17.0 (North Micro: cohere_compass). Runs the runner's own code via PYTHONPATH."
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "transformers==5.16.0",   # North Micro's card: "requires Transformers 5.16.0"
+    "torch==2.13.0",          # as the runner (vLLM 0.30's pin)
+    "torchvision",
+    "accelerate>=1.0",
+    "pillow>=10.0",
+    "numpy>=1.24",
+]
