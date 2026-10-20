@@ -486,12 +486,14 @@ def table_tarbench(store: dict) -> str:
             think = r["thinking"]
             anchor = store["models"][m]["anchor"]
             rows.append([label(store, m) + (" (thinking)" if think else "")]
-                        + [cell(n(s.get(k)), not think and m in b[k]) for k in ("mean", "mean_10")]
-                        + [n(r["published_mean"])]
-                        + [cell(n(s.get(k)), not think and m in b[k]) for k in ("bcq", "mcq")]
-                        + [n(anchor.get("official_mean_9")) if not think else "---", n(r.get("eval_minus_tarbench"))])
-    return tab("lCCCCCCC", ["Model", "Mean (9)", "Mean (10)", "Published (10)", "Yes/no", "Multiple choice",
-                                    "Eval subset (9)", "Gap"], rows, groups=[3, 8], wide=True)
+                        + [cell(n(s.get("mean_10")), not think and m in b["mean_10"]), n(r["published_mean"])]
+                        + [cell(n(s.get("mean")), not think and m in b["mean"]),
+                           n(anchor.get("official_mean_9")) if not think else "---", n(r.get("eval_minus_tarbench"))]
+                        + [cell(n(s.get(k)), not think and m in b[k]) for k in ("bcq", "mcq")])
+    return tab("lCCCCCCC", ["Model", "Ten-task mean (server)", "Ten-task mean (published)",
+                            "Nine-task mean (server)", "Nine-task mean (our subset)", "Gap",
+                            "Yes/no accuracy (server)", "Multiple-choice accuracy (server)"],
+               rows, groups=[3, 8], wide=True)
 
 
 #: TAR's sources, as its annotation files name them, with what our camera
