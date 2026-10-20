@@ -28,13 +28,13 @@ videos, for the sweep):
 | `bertscore_f1` | the open answers' BERTScore, as TAR's evaluation script computes it |
 | `parse` | how the answer was read: `strict`, `lenient` or `fail`; `n/a` for the open types |
 
-The **closed-form score** is the mean of three accuracies: yes/no,
+The **exact-answer score** (`closed_form` in the code) is the mean of three accuracies: yes/no,
 multiple choice, and the letter of multiple choice with explanation. Its
 95% confidence interval comes from 2,000 bootstrap draws of the videos.
 
 ```bash
 cd eval
-uv run tar-eval-results check                  # every closed-form score and sweep change, against results.json
+uv run tar-eval-results check                  # every exact-answer score and sweep change, against results.json
 uv run tar-eval-results check f32.qwen3-vl-8b  # one configuration
 ```
 

@@ -73,7 +73,7 @@ def score_of(rec: dict, task: str) -> float | None:
 
 
 def fig_pareto(store: dict, plt) -> str:
-    """Quality (the INT4 configuration's closed-form score) against time per video on
+    """Quality (the INT4 configuration's exact-answer score) against time per video on
     the Orin at MAXN, with the Pareto frontier of the TAR-clean models."""
     models = store["models"]
     pts = []
@@ -109,7 +109,7 @@ def fig_pareto(store: dict, plt) -> str:
     ax.minorticks_off()
     ax.set_xlim(7, 300)
     ax.set_xlabel("Seconds per video on the Jetson AGX Orin (MAXN; 16 frames, 12 questions)")
-    ax.set_ylabel("Closed-form accuracy (%)")
+    ax.set_ylabel("Exact-answer score (%)")
     ax.grid(True, axis="both")
     ax.set_axisbelow(True)
     for s in ("top", "right"):
@@ -121,7 +121,7 @@ def fig_pareto(store: dict, plt) -> str:
 
 def fig_sensitivity(store: dict, plt) -> str:
     """The three models' sensitivity maps: each setting's paired delta against
-    the BF16 reference, per closed-form task and temporal localization."""
+    the BF16 reference, per exact-answer task and temporal localization."""
     import numpy as np
     from matplotlib.colors import LinearSegmentedColormap, TwoSlopeNorm
 

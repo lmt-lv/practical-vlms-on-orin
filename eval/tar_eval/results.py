@@ -4,7 +4,7 @@
     uv run tar-eval-results check pivot.qwen3-vl-8b f32.qwen3-vl-8b
     uv run tar-eval-results score <items.jsonl> --like pivot.qwen3-vl-8b   # your own run
 
-`check` recomputes, from results/scores/, each configuration's closed-form
+`check` recomputes, from results/scores/, each configuration's exact-answer
 score (the mean accuracy over the yes/no, multiple-choice and
 multiple-choice-with-explanation letter questions, with its 95% video
 bootstrap CI) and each sweep setting's paired change against its BF16
@@ -48,7 +48,7 @@ def read_scores(path: Path) -> list[dict]:
 
 
 def closed_form(items: list[dict], field: str) -> tuple[float, float, float]:
-    """The closed-form score in points, with its 95% CI (videos resampled)."""
+    """The exact-answer score in points, with its 95% CI (videos resampled)."""
     vids: dict[str, np.ndarray] = {}
     for r in items:
         if r["task"] in CLOSED:
@@ -67,7 +67,7 @@ def closed_form(items: list[dict], field: str) -> tuple[float, float, float]:
 
 
 def closed_form_delta(ref: list[dict], cand: list[dict]) -> float:
-    """The mean of the three closed-form tasks' paired changes, in points."""
+    """The mean of the three exact-answer tasks' paired changes, in points."""
     res = {r["task"]: r["delta"] for r in compare(ref, cand)["results"] if r["metric"] == "correct"}
     return 100 * float(np.mean([res[t] for t in CLOSED]))
 
@@ -76,7 +76,7 @@ def expected(store: dict, cid: str) -> tuple[str, float] | None:
     kind, model = cid.split(".", 1)
     m = store["models"].get(model, {})
     if kind in SLOT and m.get(SLOT[kind], {}).get("closed_form"):
-        return "closed-form", m[SLOT[kind]]["closed_form"]["value"]
+        return "exact-answer", m[SLOT[kind]]["closed_form"]["value"]
     sw = store.get("sweep", {}).get(model, {}).get(kind)
     if sw and sw.get("closed_form_delta") is not None:
         return "change vs BF16", sw["closed_form_delta"]
@@ -100,7 +100,7 @@ def check(ids: list[str]) -> int:
         kind, model = cid.split(".", 1)
         field = "correct_final" if store["models"][model]["explains_first"] else "correct"
         items = read_scores(RESULTS / e["scores"])
-        if what == "closed-form":
+        if what == "exact-answer":
             got = closed_form(items, field)[0]
         else:
             ref = read_scores(RESULTS / index[f"anchor.{model}"]["scores"])
@@ -130,7 +130,7 @@ def score_own(path: Path, like: str) -> int:
     n = sum(1 for r in mine if r["task"] in CLOSED)
     print(f"your run      {v:6.2f} [{lo:.2f}, {hi:.2f}]  on {len({r['video_id'] for r in mine})} videos")
     print(f"published     {pv:6.2f} [{plo:.2f}, {phi:.2f}]  ({like}, the same questions)")
-    print(f"closed-form questions scored the same: {same} of {n} ({100 * same / max(n, 1):.1f}%)")
+    print(f"exact-answer questions scored the same: {same} of {n} ({100 * same / max(n, 1):.1f}%)")
     return 0
 
 

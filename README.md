@@ -74,7 +74,7 @@ The code keeps the names it was written with:
 | pivot | its INT4 configuration |
 | slice | subset (`eval`, `dev`, `tarbench`) |
 | noframes | question only (no video) |
-| closed-form | the mean accuracy over yes/no, multiple-choice and multiple-choice-with-explanation (letter) questions |
+| closed_form | the exact-answer score: the mean accuracy over yes/no, multiple-choice and multiple-choice-with-explanation (letter) questions |
 
 ## Licenses
 
